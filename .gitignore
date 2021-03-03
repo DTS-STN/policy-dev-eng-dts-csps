@@ -1,0 +1,9 @@
+bin
+obj
+.vscode
+appsettings.*
+publish
+otherfiles
+TestResults
+coveragereport
+todo.txt

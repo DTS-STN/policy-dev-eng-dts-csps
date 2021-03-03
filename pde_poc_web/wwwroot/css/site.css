@@ -1,0 +1,135 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+/*** CUSTOM ***/
+.list-unstyled li a {
+  font-size: 20px;
+  display: block;
+  padding: 3px 0;
+  border-bottom: 1px solid #ccc;
+  color: #666;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin: 20px 0;
+}
+h1, h2, h3, h4 {
+  font-family: Montserrat;
+  border-bottom: 0;
+  color: #0e58a7;
+}
+.table {
+  margin: 0 15px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 3px #ccc;
+  background: #fff;
+}
+body {
+  font-family: Lato;
+  color: #222;
+  background: #f4f4f4;
+}
+#results-table_wrapper {
+  width: calc(100% - 30px) !important;
+  margin: 0 15px;
+}
+.loser {
+  background: #fff !important;
+  color: #dc3545 !important;
+  font-weight: bold;
+}
+
+.neutrial {
+  background: #fff !important;
+  color: #6b6b6b !important;
+  font-weight: bold;
+}
+
+.gainer {
+  background: #fff !important;
+  color: #169e53 !important;
+  font-weight: bold;
+}
+/* .bg-danger:after {
+  content: '\0026A0';
+  text-align: right;
+  position: absolute;
+  right: 0;
+  margin: -1px 20px 0 0;
+  font-size: 19px;
+} */
+hr{opacity: 0; margin: 20px 0}
