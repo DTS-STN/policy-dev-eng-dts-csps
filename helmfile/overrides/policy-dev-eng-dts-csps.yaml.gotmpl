@@ -5,7 +5,7 @@ image:
 
 extraEnv:
   - name: connectionString
-    value:  {{ RequiredEnv "connectionString" }}
+    value:  {{ requiredEnv "connectionString" }}
 
 ingress:
       enabled: true
