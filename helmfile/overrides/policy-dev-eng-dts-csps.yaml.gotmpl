@@ -1,19 +1,19 @@
 image:
-  repository: mtscontainers.azurecr.io/openfiscacanada-dts-csps
+  repository: mtscontainers.azurecr.io/policy-dev-eng-dts-csps
   tag: "{{ requiredEnv "DOCKER_TAG" }}" 
   pullPolicy: Always
 
 extraEnv:
-  - name: OUR_VARIABLE_HERE
-    value: www.ourvaluehere.com
+  - name: connectionString
+    value:  {{ RequiredEnv "connectionString" }}
 
 ingress:
       enabled: true
       hosts:
       {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-        - openfiscacanada-dts-csps.{{ requiredEnv "BASE_DOMAIN" }}
+        - policy-dev-eng-dts-csps.{{ requiredEnv "BASE_DOMAIN" }}
       {{ end }}      
-        - openfiscacanada-dts-csps-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+        - policy-dev-eng-dts-csps-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
       annotations: {}
       # kubernetes.io/ingress.class: traefik
 
