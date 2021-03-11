@@ -37,7 +37,7 @@ namespace pde_poc_web
             services.AddControllersWithViews();
 
             // Storage
-            string connectionString = Configuration.GetConnectionString("DefaultDB");
+            string connectionString = Configuration.GetConnectionString("DefaultDB") ?? Environment.GetEnvironmentVariable("connectionString");
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, b => b.MigrationsAssembly("pde-poc-web")));
             services.AddScoped<IHelperStore, HelperStore>();
             services.AddScoped<IStoreSimulations, SimulationStore>();
