@@ -1,3 +1,4 @@
+nameOverride: csps-policy-{{ .Environment.Name }}
 image:
   repository: mtscontainers.azurecr.io/policy-dev-eng-dts-csps
   tag: "{{ requiredEnv "DOCKER_TAG" }}" 
