@@ -1,4 +1,4 @@
-Policy Difference Engine - Proof of Concept
+Policy Difference Engine - Proof of Concept 
 
 ## Description
 
