@@ -27,7 +27,7 @@ environments:
 releases:
 # Policy Diff Engine
   - name: policy-diff-{{ .Environment.Name }}
-    chart: policy-diff/policy-diff
+    chart: ../helm/charts/policy-diff
     version: 0.0.3
     values:
       - overrides/policy-diff.yaml.gotmpl
