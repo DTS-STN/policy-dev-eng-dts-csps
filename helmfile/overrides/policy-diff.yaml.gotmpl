@@ -1,6 +1,5 @@
-nameOverride: csps-policy-{{ .Environment.Name }}
 image:
-  repository: mtscontainers.azurecr.io/policy-dev-eng-dts-csps
+  repository: mtscontainers.azurecr.io/policy-diff
   tag: "{{ requiredEnv "DOCKER_TAG" }}" 
   pullPolicy: Always
 
@@ -12,9 +11,9 @@ ingress:
       enabled: true
       hosts:
       {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
-        - policy-dev-eng-dts-csps.{{ requiredEnv "BASE_DOMAIN" }}
+        - policy-diff.{{ requiredEnv "BASE_DOMAIN" }}
       {{ end }}      
-        - policy-dev-eng-dts-csps-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+        - policy-diff-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
       annotations: {}
       # kubernetes.io/ingress.class: traefik
 
