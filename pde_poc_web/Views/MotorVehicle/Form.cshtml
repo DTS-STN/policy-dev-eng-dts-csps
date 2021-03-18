@@ -1,0 +1,209 @@
+@model MVSimulationViewModel
+@{
+    var Days = new List<string>() { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+    var person = Model.Person;
+}
+
+<div>
+    <h3>New Simulation</h3>
+    <hr/>
+    <br/>
+    <div>
+        <form asp-action="Form">
+            <!-- CASES -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Base Case</h5>
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardCmvoDaily">
+                            Standard CMVO Daily Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoDaily"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoDaily"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardCmvoWeekly">
+                            Standard CMVO Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardOtherDaily">
+                            Standard Other Daily Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardOtherDaily"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardOtherDaily"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardOtherWeekly">
+                            Standard Other Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardOtherWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardOtherWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardHighwayWeekly">
+                            Standard Highway Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.StandardHighwayReduction">
+                            Highway Holiday Reduction Factor
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayReduction"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayReduction"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="BaseCase.MaxCmvoDistance">
+                            Max Distance to be CMVO (miles)
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="BaseCase.MaxCmvoDistance"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="BaseCase.MaxCmvoDistance"></span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <h5>Variant Case</h5>
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardCmvoDaily">
+                            Standard CMVO Daily Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardCmvoDaily"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardCmvoDaily"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardCmvoWeekly">
+                            Standard CMVO Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardCmvoWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardCmvoWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardOtherDaily">
+                            Standard Other Daily Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardOtherDaily"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardOtherDaily"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardOtherWeekly">
+                            Standard Other Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardOtherWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardOtherWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardHighwayWeekly">
+                            Standard Highway Weekly Hours
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardHighwayWeekly"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayWeekly"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.StandardHighwayReduction">
+                            Highway Holiday Reduction Factor
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.StandardHighwayReduction"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayReduction"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="VariantCase.MaxCmvoDistance">
+                            Max Distance to be CMVO (miles)
+                        </label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" asp-for="VariantCase.MaxCmvoDistance"/>
+                        </div>
+                        <span class="text-danger" asp-validation-for="VariantCase.MaxCmvoDistance"></span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PERSON -->
+            <hr/>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>CMVO Hours</th>
+                                <th>HMVO Hours</th>
+                                <th>Other Hours</th>
+                                <th>Is Holiday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             @for (var i = 0; i < Days.Count; i++)
+                        {
+                            var v = person.WeeklySchedule.Hours;
+                            <tr>
+                                <td>@Days[i]</td>
+                                <td>
+                                    <input type="text" asp-for="Person.WeeklySchedule.Hours[i].HoursCmvo"/>
+                                    @* <input type="text" name="Model[@i].CmvoHours" /> *@
+                                </td>
+                                <td>
+                                    <input type="text" asp-for="Person.WeeklySchedule.Hours[i].HoursHmvo"/>
+                                </td>
+                                <td>
+                                    <input type="text" asp-for="Person.WeeklySchedule.Hours[i].HoursOther"/>
+                                </td>
+                                <td>
+                                    <input type="checkbox" asp-for="Person.WeeklySchedule.Hours[i].IsHoliday"/>
+                                </td>
+                            </tr>
+                        }
+
+                        </tbody>
+                    
+                    </table>
+                </div>
+            </div>
+            <hr/>
+            <button type="submit" class="btn btn-primary">Run</button>
+        </form>
+    </div>
+</div>

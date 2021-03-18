@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 
 using pde_poc_sim.Engine;
+using pde_poc_sim.Engine.Interfaces;
 
 namespace pde_poc_web.Models
 {
@@ -23,17 +24,18 @@ namespace pde_poc_web.Models
             SimulationName = "";
         }
         
-        public FormViewModel(SimulationCase baseCase) {
+        public FormViewModel(ISimulationCase baseCase) {
+            var mbCase = (MaternityBenefitSimulationCase)baseCase;
             BaseCase = new CaseViewModel() {
-                Percentage = baseCase.Percentage,
-                MaxWeeklyAmount = baseCase.MaxWeeklyAmount,
-                NumWeeks = baseCase.NumWeeks
+                Percentage = mbCase.Percentage,
+                MaxWeeklyAmount = mbCase.MaxWeeklyAmount,
+                NumWeeks = mbCase.NumWeeks
             };
 
             VariantCase = new CaseViewModel() {
-                Percentage = baseCase.Percentage,
-                MaxWeeklyAmount = baseCase.MaxWeeklyAmount,
-                NumWeeks = baseCase.NumWeeks
+                Percentage = mbCase.Percentage,
+                MaxWeeklyAmount = mbCase.MaxWeeklyAmount,
+                NumWeeks = mbCase.NumWeeks
             };
 
             SimulationName = $"Simulation_{DateTime.Now.ToString("yyyyMMddHHmm")}";

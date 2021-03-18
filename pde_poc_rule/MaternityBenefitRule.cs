@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace pde_poc_rule
 {
-    public class MaternityBenefitRule : IMaternityBenefitRule
+    public class MaternityBenefitRule : IRule<MaternityBenefitPerson>
     {
         private readonly double _percentage;
         private readonly int _numWeeks;
@@ -22,7 +22,7 @@ namespace pde_poc_rule
             _bestWeeksDict = bestWeeksDict;
         }
 
-        public decimal Calculate(IPerson person) {
+        public decimal Calculate(MaternityBenefitPerson person) {
             int bestWeeks = _bestWeeksDict[person.UnemploymentRegionId];
             decimal averageIncome = person.GetAverageIncome(bestWeeks); 
 

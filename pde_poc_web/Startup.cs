@@ -18,7 +18,9 @@ using Microsoft.EntityFrameworkCore;
 using pde_poc_sim.Storage;
 using pde_poc_sim.Storage.Mocks;
 using pde_poc_sim.Engine.Lib;
-using pde_poc_rule;
+using pde_poc_sim.Engine;
+using pde_poc_sim.Engine.Interfaces;
+using Rule = pde_poc_rule;
 
 namespace pde_poc_web
 {
@@ -39,20 +41,13 @@ namespace pde_poc_web
             // Storage
             string connectionString = Configuration.GetConnectionString("DefaultDB");
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, b => b.MigrationsAssembly("pde-poc-web")));
-            services.AddScoped<IHelperStore, HelperStore>();
-            services.AddScoped<IStoreSimulations, SimulationStore>();
+            
+            InjectMaternityBenefits(services);
+            InjectMotorVehicle(services);
 
-            // Lib
-            services.AddScoped<ISimulationLib, SimulationLib>();
-            services.AddScoped<IHandleSimulationRequests, SimulationRequestHandler>();
-            services.AddScoped<IRunSimulations, SimulationRunner>();
-            services.AddScoped<IRunCases, CaseRunner>();
-            services.AddScoped<IBuildRules, RuleBuilder>();
+            // Common
             services.AddScoped<IJoinResults, Joiner>();
-            services.AddScoped<IGetSimulations, SimulationGetter>();
-            services.AddScoped<IBuildSimulations, SimulationBuilder>();
-            services.AddScoped<IAggregateDemographics, DemographicsAggregator>();
-            services.AddScoped<ISimulateMaternityBenefits, MaternityBenefitSimulator>();
+            
 
             // Create mocks
             services.AddScoped<MockCreator>();
@@ -91,6 +86,93 @@ namespace pde_poc_web
                     name: "default",
                     pattern: "{controller=Simulation}/{action=Form}/{id?}");
             });
+        }
+   
+
+        private void InjectMaternityBenefits(IServiceCollection services) {
+            services.AddScoped<IHandleSimulationRequests<MaternityBenefitSimulationCaseRequest>, 
+                SimulationRequestHandler<
+                    MaternityBenefitSimulationCase, 
+                    MaternityBenefitSimulationCaseRequest, 
+                    pde_poc_sim.Engine.MaternityBenefitPerson
+                >
+            >();
+
+            services.AddScoped<
+                IBuildSimulations<
+                    MaternityBenefitSimulationCase, 
+                    MaternityBenefitSimulationCaseRequest
+                >,
+                MaternityBenefitSimulationBuilder>();    
+            
+            services.AddScoped<IHelperStore<MaternityBenefitSimulationCase>, 
+                MaternityBenefitHelperStore>();
+
+            services.AddScoped<IStorePersons<MaternityBenefitPerson>, 
+                MaternityBenefitPersonStore>();
+
+            services.AddScoped<IRunSimulations<MaternityBenefitSimulationCase, MaternityBenefitPerson>,
+                SimulationRunner<MaternityBenefitSimulationCase, MaternityBenefitPerson>>();
+
+            services.AddScoped<IRunCases<MaternityBenefitSimulationCase, MaternityBenefitPerson>, 
+                MaternityBenefitCaseRunner>();
+
+            services.AddScoped<IBuildRules<MaternityBenefitSimulationCase, Rule.MaternityBenefitPerson>,
+                MaternityBenefitRuleBuilder>();
+
+            services.AddScoped<IGetSimulations<MaternityBenefitSimulationCase>, MaternityBenefitSimulationGetter>();
+
+            services.AddScoped<ISimulationLib<MaternityBenefitSimulationCase>, SimulationLib<MaternityBenefitSimulationCase>>();
+
+            services.AddScoped<IStoreSimulations<MaternityBenefitSimulationCase>, MaternityBenefitSimulationStore>();
+
+            // Executor
+            services.AddScoped<Rule.IExecuteRules<Rule.MaternityBenefitPerson>, Rule.RuleExecutor<Rule.MaternityBenefitPerson>>();
+
+            
+
+        }
+
+        private void InjectMotorVehicle(IServiceCollection services) {
+            services.AddScoped<IHandleSimulationRequests<MotorVehicleSimulationCaseRequest>, 
+                SimulationRequestHandler<
+                    MotorVehicleSimulationCase, 
+                    MotorVehicleSimulationCaseRequest, 
+                    pde_poc_sim.Engine.MotorVehiclePerson
+                >
+            >();
+
+            services.AddScoped<
+                IBuildSimulations<
+                    MotorVehicleSimulationCase, 
+                    MotorVehicleSimulationCaseRequest
+                >,
+                MotorVehicleSimulationBuilder>(); 
+
+            services.AddScoped<IHelperStore<MotorVehicleSimulationCase>, 
+                MotorVehicleHelperStore>();
+
+            services.AddScoped<IStorePersons<MotorVehiclePerson>, 
+                MotorVehiclePersonStore>();
+
+            services.AddScoped<IRunSimulations<MotorVehicleSimulationCase, MotorVehiclePerson>,
+                SimulationRunner<MotorVehicleSimulationCase, MotorVehiclePerson>>();
+
+            services.AddScoped<IRunCases<MotorVehicleSimulationCase, MotorVehiclePerson>, 
+                MotorVehicleCaseRunner>();
+
+            services.AddScoped<IBuildRules<MotorVehicleSimulationCase, Rule.MotorVehiclePerson>,
+                MotorVehicleRuleBuilder>();
+
+            services.AddScoped<IGetSimulations<MotorVehicleSimulationCase>, MotorVehicleSimulationGetter>();
+
+            services.AddScoped<ISimulationLib<MotorVehicleSimulationCase>, SimulationLib<MotorVehicleSimulationCase>>();
+
+            services.AddScoped<IStoreSimulations<MotorVehicleSimulationCase>, MotorVehicleSimulationStore>();
+
+
+            services.AddScoped<Rule.IExecuteRules<Rule.MotorVehiclePerson>, Rule.RuleExecutor<Rule.MotorVehiclePerson>>();
+
         }
     }
 }

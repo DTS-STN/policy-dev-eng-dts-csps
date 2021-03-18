@@ -6,8 +6,8 @@ namespace pde_poc.Tests.Builders
 {
     public static class PersonBuilder
     {
-        public static Person Generate(Guid personId) {
-            return new Person() {
+        public static MaternityBenefitPerson Generate(Guid personId) {
+            return new MaternityBenefitPerson() {
                 Id = personId,
                 UnemploymentRegion = GenerateUnemploymentRegion(),
                 Age = 20,

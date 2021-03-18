@@ -1,28 +1,30 @@
 using System;
 using System.Collections.Generic;
 
+using pde_poc_sim.Engine.Interfaces;
 using pde_poc_sim.Storage;
 
 namespace pde_poc_sim.Engine.Lib
 {
-    public class SimulationLib: ISimulationLib
+    public class SimulationLib<T>: ISimulationLib<T>
+        where T : ISimulationCase
     {
-        private readonly IHelperStore _helperStore;
-        private readonly IStoreSimulations _simulationStore;
+        private readonly IHelperStore<T> _helperStore;
+        private readonly IStoreSimulations<T> _simulationStore;
 
         public SimulationLib(
-            IHelperStore helperStore, 
-            IStoreSimulations simulationStore
+            IHelperStore<T> helperStore, 
+            IStoreSimulations<T> simulationStore
         ) {
             _helperStore = helperStore;
             _simulationStore = simulationStore;
         }
 
-        public SimulationCase GetBaseCase() {
+        public T GetBaseCase() {
             return _helperStore.GetBaseCase();
         }
 
-        public List<SimulationLite> GetAll() {
+        public IEnumerable<SimulationLite> GetAll() {
             return _simulationStore.GetAll();
         }
 

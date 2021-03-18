@@ -1,0 +1,104 @@
+﻿@using pde_poc_sim.Engine
+@model SimulationFull<MotorVehicleSimulationCase>
+
+@{
+    var baseCase = Model.Simulation.BaseCase;
+    var variantCase = Model.Simulation.VariantCase;
+
+    var result = Model.SimulationResult;
+}
+
+<h3>Simulation Results</h3>
+<hr/>
+
+<div>
+    <h4>Simulation Info</h4>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center">Parameter</th>
+                    <th class="text-center">Base Case</th>
+                    <th class="text-center">Variant Case</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <hr/>
+    <h4>Aggregated Results</h4>
+    <div class="row">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Gainers</td>
+                    <td class="text-center">@result.TotalGainers</td>
+                </tr>
+                <tr>
+                    <td>Losers</td>
+                    <td class="text-center">@result.TotalLosers</td>
+                </tr>
+                <tr>
+                    <td>Neutral</td>
+                    <td class="text-center">@result.TotalNeutral</td>
+                </tr>
+                <tr>
+                    <td>Total Gained ($)</td>
+                    <td class="text-center">@String.Format("{0:n}", result.TotalGained)</td>
+                </tr>
+                <tr>
+                    <td>Total Lost ($)</td>
+                    <td class="text-center">@String.Format("{0:n}", result.TotalLost)</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <hr/>
+    <h4>Individual Results</h4>
+    <div class="row">
+        <table class="table" id="results-table">
+            <thead>
+                <tr>
+                    <th class="text-center">Base Amount</th>
+                    <th class="text-center">Variant Amount</th>
+                    <th class="text-center">Diff</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var simRes in result.PersonResults) {
+                    var person = (MotorVehiclePerson)simRes.Person;
+                    var diff = (simRes.VariantAmount - simRes.BaseAmount);
+                    var styleClass = "loser";
+                    if (diff > 0) {
+                        styleClass = "gainer";
+                    } else if (diff == 0) {
+                        styleClass = "neutral";
+                    }
+
+                    <tr>
+                        <td class="text-center">
+                            @simRes.BaseAmount
+                        </td>
+                        <td class="text-center">
+                            @simRes.VariantAmount
+                        </td>
+                        <td class="@styleClass text-center">
+                            @diff
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    #results-table_wrapper {
+        width: 100% !important
+    }
+</style>

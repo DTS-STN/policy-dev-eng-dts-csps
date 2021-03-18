@@ -1,10 +1,12 @@
+using pde_poc_sim.Engine.Interfaces;
+
 namespace pde_poc_sim.Engine
 {
-    public class SimulationRequest
+    public class SimulationRequest<T> where T : ISimulationCaseRequest
     {
         public string SimulationName { get; set; }
-        public SimulationCaseRequest BaseCaseRequest { get; set; }
-        public SimulationCaseRequest VariantCaseRequest { get; set; }
+        public T BaseCaseRequest { get; set; }
+        public T VariantCaseRequest { get; set; }
 
     }
 }
