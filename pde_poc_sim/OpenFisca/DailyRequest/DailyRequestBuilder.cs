@@ -24,6 +24,11 @@ namespace pde_poc_sim.OpenFisca.DailyRequest
             // Will need to incorporate the rule in here as well
             // Capture these as constants somewhere
             return new Dictionary<string, Dictionary<string,object>>() {
+                        // Target value
+                        {
+                            "calculate_overtime_daily__overtime_worked_hours", 
+                            GetDict(null)
+                        },
                         {
                             "daily_work_schedule__total_hours_highway_operator", 
                             GetDict(hourSet.HoursHmvo)
@@ -37,21 +42,17 @@ namespace pde_poc_sim.OpenFisca.DailyRequest
                             GetDict(0)
                         },
                         {
-                            "daily_work_schedule__total_hours_other_operator", 
+                            "daily_work_schedule__total_hours_other", 
                             GetDict(hourSet.HoursOther)
                         },
-                        {
-                            "calculate_overtime_daily__overtime_worked_hours", 
-                            GetDict(null)
-                        },
-                        {
-                            "standard_hours__daily", 
-                            GetDict(null)
-                        },
-                        {
-                            "daily_summed_hours__non_highway_worked_hours", 
-                            GetDict(null)
-                        }
+                        // {
+                        //     "standard_hours__daily", 
+                        //     GetDict(null)
+                        // },
+                        // {
+                        //     "daily_summed_hours__non_highway_worked_hours", 
+                        //     GetDict(null)
+                        // }
                     };
 
         }

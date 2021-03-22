@@ -17,6 +17,30 @@ namespace pde_poc_sim.Engine
                 Hours = new List<HourSet>()
             };
         }
+
+        public double WeeklyHmvoHours {
+            get {
+                return WeeklySchedule.Hours.Sum(x => x.HoursHmvo);
+            }
+        }
+
+        public double WeeklyCmvoHours {
+            get {
+                return WeeklySchedule.Hours.Sum(x => x.HoursCmvo);
+            }
+        }
+
+        public double WeeklyOtherHours {
+            get {
+                return WeeklySchedule.Hours.Sum(x => x.HoursOther);
+            }
+        }
+
+        public int NumHolidays {
+            get {
+                return WeeklySchedule.Hours.Count(x => x.IsHoliday);
+            }
+        }
     }
 
     public class MvoSchedule {

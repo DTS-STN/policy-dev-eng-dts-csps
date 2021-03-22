@@ -11,54 +11,39 @@ namespace pde_poc_sim.OpenFisca.AggregateRequest
                 persons = new Dictionary<string, Dictionary<string, Dictionary<string, object>>>()
             };
             
-            // Do this...
-
-            // vars
-            /*
-            daily amount
-            total weekly cmvo
-            total weekly hmvo
-            total weekly other
-            holiday info
-            parameters...
-            
-            */
             result.persons = new Dictionary<string, Dictionary<string, Dictionary<string, object>>>() {
                 {
                     "person1", 
                     new Dictionary<string, Dictionary<string,object>>() {
                         {
-                            "mvo__is_cmvo", 
+                            "calculate_overtime_weekly__overtime_worked_hours", 
                             GetDict(null)
                         },
+                        // Can get other results as well...
                         {
-                            "mvo__vehicle_is_operated_by_employee", 
-                            GetDict(true)
+                            "weekly_work_schedule__total_hours_highway_operator", 
+                            GetDict(person.WeeklyHmvoHours)
                         },
                         {
-                            "mvo__vehicle_is_designed_for_rails", 
-                            GetDict(false)
+                            "weekly_work_schedule__total_hours_bus_operator", 
+                            GetDict(0)
                         },
                         {
-                            "mvo__vehicle_is_powered_by_muscles", 
-                            GetDict(false)
+                            "weekly_work_schedule__total_hours_city_operator", 
+                            GetDict(person.WeeklyCmvoHours)
                         },
                         {
-                            "mvo__operates_a_bus", 
-                            GetDict(false)
+                            "weekly_work_schedule__total_hours_other", 
+                            GetDict(person.WeeklyOtherHours)
                         },
                         {
-                            "mvo__has_collective_cmvo_agreement", 
-                            GetDict(false)
+                            "weekly_work_schedule__total_holiday_days_in_period", 
+                            GetDict(person.NumHolidays)
                         },
-                        {
-                            "mvo__is_cmvo_under_prevailing_industry_practice", 
-                            GetDict(false)
-                        },
-                        {
-                            "mvo__distance_from_home_terminal", 
-                            GetDict(9.99)
-                        }
+                        // Need daily
+
+                        // Need params
+
                     }
                 }
             };

@@ -57,7 +57,10 @@ namespace pde_poc_web.Controllers
 
         public IActionResult Results(Guid id) {
             var simResults = _simulationGetter.Get(id);
-            return View(simResults);
+
+            var person = _cache.Get<MotorVehiclePerson>("MV_PERSON");
+            var result = new MotorVehicleResultsViewModel(simResults, person);
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

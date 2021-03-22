@@ -57,15 +57,11 @@ namespace pde_poc_sim.Engine.Lib
         } 
 
         private decimal ExtractAggregateResult(OpenFiscaResponse response) {
-            // decimal totalDailyHours = 0m;
-            // foreach (var day in response.persons) {
-            //     var dayResult = day.Value;
-            //     var valueDict = dayResult["calculate_overtime_daily__overtime_worked_hours"];
-            //     var fullValue = Convert.ToDecimal(valueDict.Values.First());
-            //     totalDailyHours += fullValue;
-            // }
-            // return totalDailyHours;
-            return 0;
+            var personDict = response.persons;
+            var dayResult = personDict.First().Value;
+            var valueDict = dayResult["calculate_overtime_weekly__overtime_worked_hours"];
+            var fullValue = Convert.ToDecimal(valueDict.Values.First());
+            return fullValue;
         } 
 
     }
