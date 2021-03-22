@@ -1,0 +1,28 @@
+image:
+  repository: mtscontainers.azurecr.io/policy-diff
+  tag: "{{ requiredEnv "DOCKER_TAG" }}" 
+  pullPolicy: Always
+
+extraEnv:
+  - name: connectionString
+    value:  {{ requiredEnv "connectionString" }}
+
+ingress:
+      enabled: true
+      hosts:
+      {{ if or (eq .Environment.Name "prod-blue") (eq .Environment.Name "prod-green") }}
+        - policy-diff.{{ requiredEnv "BASE_DOMAIN" }}
+      {{ end }}      
+        - policy-diff-{{ .Environment.Name }}.{{ requiredEnv "BASE_DOMAIN" }}
+      annotations: {}
+      # kubernetes.io/ingress.class: traefik
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+livenessDelay: 60
+readinessDelay: 60
+livenessPath: /
+readinessPath: /
+port: 80
