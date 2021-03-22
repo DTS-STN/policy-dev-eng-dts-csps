@@ -20,7 +20,9 @@ using pde_poc_sim.Storage.Mocks;
 using pde_poc_sim.Engine.Lib;
 using pde_poc_sim.Engine;
 using pde_poc_sim.Engine.Interfaces;
-using Rule = pde_poc_rule;
+using pde_poc_sim.OpenFisca;
+using pde_poc_sim.OpenFisca.DailyRequest;
+using pde_poc_sim.OpenFisca.AggregateRequest;
 
 namespace pde_poc_web
 {
@@ -84,7 +86,7 @@ namespace pde_poc_web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Simulation}/{action=Form}/{id?}");
+                    pattern: "{controller=MotorVehicle}/{action=Form}/{id?}");
             });
         }
    
@@ -94,7 +96,7 @@ namespace pde_poc_web
                 SimulationRequestHandler<
                     MaternityBenefitSimulationCase, 
                     MaternityBenefitSimulationCaseRequest, 
-                    pde_poc_sim.Engine.MaternityBenefitPerson
+                    MaternityBenefitPerson
                 >
             >();
 
@@ -117,20 +119,14 @@ namespace pde_poc_web
             services.AddScoped<IRunCases<MaternityBenefitSimulationCase, MaternityBenefitPerson>, 
                 MaternityBenefitCaseRunner>();
 
-            services.AddScoped<IBuildRules<MaternityBenefitSimulationCase, Rule.MaternityBenefitPerson>,
-                MaternityBenefitRuleBuilder>();
+            services.AddScoped<IExecuteRules<MaternityBenefitSimulationCase, MaternityBenefitPerson>,
+                MaternityBenefitRuleExecutor>();
 
             services.AddScoped<IGetSimulations<MaternityBenefitSimulationCase>, MaternityBenefitSimulationGetter>();
 
             services.AddScoped<ISimulationLib<MaternityBenefitSimulationCase>, SimulationLib<MaternityBenefitSimulationCase>>();
 
             services.AddScoped<IStoreSimulations<MaternityBenefitSimulationCase>, MaternityBenefitSimulationStore>();
-
-            // Executor
-            services.AddScoped<Rule.IExecuteRules<Rule.MaternityBenefitPerson>, Rule.RuleExecutor<Rule.MaternityBenefitPerson>>();
-
-            
-
         }
 
         private void InjectMotorVehicle(IServiceCollection services) {
@@ -138,7 +134,7 @@ namespace pde_poc_web
                 SimulationRequestHandler<
                     MotorVehicleSimulationCase, 
                     MotorVehicleSimulationCaseRequest, 
-                    pde_poc_sim.Engine.MotorVehiclePerson
+                    MotorVehiclePerson
                 >
             >();
 
@@ -161,18 +157,22 @@ namespace pde_poc_web
             services.AddScoped<IRunCases<MotorVehicleSimulationCase, MotorVehiclePerson>, 
                 MotorVehicleCaseRunner>();
 
-            services.AddScoped<IBuildRules<MotorVehicleSimulationCase, Rule.MotorVehiclePerson>,
-                MotorVehicleRuleBuilder>();
+            services.AddScoped<IExecuteRules<MotorVehicleSimulationCase, MotorVehiclePerson>,
+                MotorVehicleRuleExecutor>();
 
             services.AddScoped<IGetSimulations<MotorVehicleSimulationCase>, MotorVehicleSimulationGetter>();
 
             services.AddScoped<ISimulationLib<MotorVehicleSimulationCase>, SimulationLib<MotorVehicleSimulationCase>>();
 
             services.AddScoped<IStoreSimulations<MotorVehicleSimulationCase>, MotorVehicleSimulationStore>();
+        
 
+            // OpenFisca
+            services.AddScoped<IOpenFisca, OpenFiscaLib>();
+            services.Configure<OpenFiscaOptions>(options => Configuration.GetSection("OpenFiscaOptions").Bind(options));
 
-            services.AddScoped<Rule.IExecuteRules<Rule.MotorVehiclePerson>, Rule.RuleExecutor<Rule.MotorVehiclePerson>>();
-
+            services.AddScoped<IBuildDailyRequests, DailyRequestBuilder>();
+            services.AddScoped<IBuildAggregateRequests, AggregateRequestBuilder>();
         }
     }
 }

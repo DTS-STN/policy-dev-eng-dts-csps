@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pde_poc_rule\pde_poc_rule.csproj" />
     <ProjectReference Include="..\pde_poc_sim\pde_poc_sim.csproj" />
   </ItemGroup>
 

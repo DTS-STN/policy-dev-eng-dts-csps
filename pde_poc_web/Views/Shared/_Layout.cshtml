@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Simulation" asp-action="Index">Policy Difference Engine</a>
+                <a class="navbar-brand" asp-area="" asp-controller="MotorVehicle" asp-action="Index">Policy Difference Engine</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Simulation" asp-action="Index">About</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MotorVehicle" asp-action="Index">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Simulation" asp-action="Form">New Simulation</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MotorVehicle" asp-action="Form">New Simulation</a>
                         </li>
                     </ul>
                 </div>
@@ -36,43 +36,8 @@
         <main role="main" class="pb-3">
             <div class="container">
                 <div class="row">
-                    <!-- Sidebar -->
-                    <div class="col-3">
-                        @* <h5>Maternity Benefits Assessment Tool</h5> *@
-                        <ul class="list-unstyled components mb-5">
-                            <li>
-                            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Impact Measurement</a>
-                                <ul class="collapse list-unstyled" id="pageSubmenu1">
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Run a Simulation</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Save Simulations</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Shared Library</a></li>
-                            </ul>
-                            </li>
-                        <li>
-                        <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed">Data Sources</a>
-                        </li>
-                        <li>
-                        <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">About</a>
-                            <ul class="collapse list-unstyled" id="pageSubmenu3">
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Team Babel</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Documentation</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Walkthrough</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> GitHub</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                        <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Settings</a>
-                            <ul class="collapse list-unstyled" id="pageSubmenu4">
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>My Account</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Profile</a></li>
-                                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Language</a></li>
-                            </ul>
-                        </li>
-                        </ul>
-                    </div>
-                    <!-- End Sidebar -->
                     <!-- Start Container -->
-                    <div class="col-9">
+                    <div class="col-12">
                             @RenderBody()
                     </div>
                 </div>

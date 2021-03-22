@@ -29,5 +29,21 @@ namespace pde_poc_sim.Engine
             Flsah = dbModel.Flsah;
             WeeklyIncome = dbModel.WeeklyIncomes.Select(x => new WeeklyIncome(x)).ToList();   
         }
+
+        public decimal GetAverageIncome(int divisor) {
+            if (divisor <= 0) {
+                throw new Exception("Divisor must be greater than 0");
+            }   
+            
+            var oneYearAgo = DateTime.Now.AddYears(-1);
+
+            var lastYearsIncome = WeeklyIncome.Where(x => x.StartDate > oneYearAgo);
+            var averageIncome = lastYearsIncome
+                .OrderByDescending(x => x.Income)
+                .Take(divisor)
+                .Average(x => x.Income);
+
+            return averageIncome;
+        }
     }
 }

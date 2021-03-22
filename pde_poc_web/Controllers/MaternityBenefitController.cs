@@ -5,15 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 using pde_poc_web.Models;
 using pde_poc_sim.Engine.Lib;
 using pde_poc_sim.Engine;
 
-//using mbSimReq = MaternityBenefitSimulationRequest<MaternityBenefitSimulationCaseRequest>;
 
 namespace pde_poc_web.Controllers
 {
+    
     public class MaternityBenefitController : Controller
     {
         private readonly IHandleSimulationRequests<MaternityBenefitSimulationCaseRequest> _requestHandler;
@@ -86,4 +87,5 @@ namespace pde_poc_web.Controllers
             };
         }
     }
+
 }
