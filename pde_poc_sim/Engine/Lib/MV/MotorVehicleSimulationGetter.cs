@@ -24,7 +24,6 @@ namespace pde_poc_sim.Engine.Lib
                 SimulationResult = simulationResult,
                 AggregationResults = new List<AggregationResult>() {
                 },
-
             };
         }
 

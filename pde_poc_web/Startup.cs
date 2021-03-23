@@ -21,8 +21,9 @@ using pde_poc_sim.Engine.Lib;
 using pde_poc_sim.Engine;
 using pde_poc_sim.Engine.Interfaces;
 using pde_poc_sim.OpenFisca;
-using pde_poc_sim.OpenFisca.DailyRequest;
-using pde_poc_sim.OpenFisca.AggregateRequest;
+
+using RestSharp;
+using MyRestClient = RestSharp.RestClient;
 
 namespace pde_poc_web
 {
@@ -169,10 +170,13 @@ namespace pde_poc_web
 
             // OpenFisca
             services.AddScoped<IOpenFisca, OpenFiscaLib>();
+            services.AddScoped<IRestClient, MyRestClient>();
             services.Configure<OpenFiscaOptions>(options => Configuration.GetSection("OpenFiscaOptions").Bind(options));
 
             services.AddScoped<IBuildDailyRequests, DailyRequestBuilder>();
             services.AddScoped<IBuildAggregateRequests, AggregateRequestBuilder>();
+            services.AddScoped<IExtractDailyResults, DailyResultExtractor>();
+            services.AddScoped<IExtractAggregateResults, AggregateResultExtractor>();
         }
     }
 }

@@ -1,62 +1,39 @@
 using System.Collections.Generic;
-using pde_poc_sim.OpenFisca;
 using pde_poc_sim.Engine;
 
-namespace pde_poc_sim.OpenFisca.AggregateRequest
+using OF = pde_poc_sim.OpenFisca.OpenFiscaVariables;
+
+namespace pde_poc_sim.OpenFisca
 {
     public class AggregateRequestBuilder : IBuildAggregateRequests
     {
-        public OpenFiscaRequest Build(MotorVehicleSimulationCase rule, MotorVehiclePerson person, decimal dailyResult) {
-            var result = new OpenFiscaRequest() {
-                persons = new Dictionary<string, Dictionary<string, Dictionary<string, object>>>()
-            };
+        public OpenFiscaResource Build(MotorVehicleSimulationCase rule, MotorVehiclePerson person, decimal dailyResult) {
+            var result = new OpenFiscaResource();
+            string personName = "person1";
+            result.CreatePerson(personName);
+
+            // Target value 
+            result.SetProp(personName, OF.TotalOTHours, null);
+
+            // Person vars
+            result.SetProp(personName, OF.WeeklyHmvoHours, person.WeeklyHmvoHours);
+            result.SetProp(personName, OF.WeeklyBusHours, 0);
+            result.SetProp(personName, OF.WeeklyCmvoHours, person.WeeklyCmvoHours);
+            result.SetProp(personName, OF.WeeklyOtherHours, person.WeeklyOtherHours);
+            result.SetProp(personName, OF.NumHolidaysInPeriod, person.NumHolidays);
+
+            // Parameter overrides
+            result.SetProp(personName, OF.StandardClcDailyHours, rule.StandardOtherDaily);
+            result.SetProp(personName, OF.StandardCmvoDailyHours, rule.StandardCmvoDaily);
+            result.SetProp(personName, OF.StandardClcWeeklyHours, rule.StandardOtherWeekly);
+            result.SetProp(personName, OF.StandardCmvoWeeklyHours, rule.StandardCmvoWeekly);
+            result.SetProp(personName, OF.StandardHmvoHolidayReduction, rule.StandardHighwayReduction);
+            result.SetProp(personName, OF.StandardHmvoWeeklyHours, rule.StandardHighwayWeekly);
+
+            // Daily result
+            result.SetProp(personName, OF.DailyOTHours, dailyResult);
             
-            result.persons = new Dictionary<string, Dictionary<string, Dictionary<string, object>>>() {
-                {
-                    "person1", 
-                    new Dictionary<string, Dictionary<string,object>>() {
-                        {
-                            "calculate_overtime_weekly__overtime_worked_hours", 
-                            GetDict(null)
-                        },
-                        // Can get other results as well...
-                        {
-                            "weekly_work_schedule__total_hours_highway_operator", 
-                            GetDict(person.WeeklyHmvoHours)
-                        },
-                        {
-                            "weekly_work_schedule__total_hours_bus_operator", 
-                            GetDict(0)
-                        },
-                        {
-                            "weekly_work_schedule__total_hours_city_operator", 
-                            GetDict(person.WeeklyCmvoHours)
-                        },
-                        {
-                            "weekly_work_schedule__total_hours_other", 
-                            GetDict(person.WeeklyOtherHours)
-                        },
-                        {
-                            "weekly_work_schedule__total_holiday_days_in_period", 
-                            GetDict(person.NumHolidays)
-                        },
-                        // Need daily
-
-                        // Need params
-
-                    }
-                }
-            };
-
             return result;
         }
-
-        private Dictionary<string, object> GetDict(object val) {
-            return new Dictionary<string, object>() {
-                { "2020-09-25", val }
-            };
-        }
     }
-
-    
 }

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.Options;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
@@ -6,19 +7,22 @@ namespace pde_poc_sim.OpenFisca
 {
     public class OpenFiscaLib : IOpenFisca
     {
-        private readonly RestClient _client;
+        private readonly IRestClient _client;
 
-        public OpenFiscaLib(IOptions<OpenFiscaOptions> optionsAccessor) {
-            string apiUrl = optionsAccessor.Value.Url;
-            _client = new RestClient(apiUrl);
+        public OpenFiscaLib(IRestClient client, IOptions<OpenFiscaOptions> optionsAccessor) {
+            _client = client;
+            _client.BaseUrl = new Uri(optionsAccessor.Value.Url);
             _client.UseNewtonsoftJson();
         }
 
-
-        public OpenFiscaResponse Calculate(OpenFiscaRequest request) {
+        public OpenFiscaResource Calculate(OpenFiscaResource request) {
             var restRequest = new RestRequest($"calculate", DataFormat.Json);
             restRequest.AddJsonBody(request);
-            var result = _client.Post<OpenFiscaResponse>(restRequest);
+            var result = _client.Post<OpenFiscaResource>(restRequest);
+
+            if (result.StatusCode != System.Net.HttpStatusCode.OK) {
+                throw new OpenFiscaException(result.ErrorMessage);
+            }
             return result.Data;
         }
     }

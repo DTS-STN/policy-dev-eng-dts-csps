@@ -1,9 +1,9 @@
 using pde_poc_sim.Engine;
 
-namespace pde_poc_sim.OpenFisca.AggregateRequest
+namespace pde_poc_sim.OpenFisca
 {
     public interface IBuildAggregateRequests
     {
-         OpenFiscaRequest Build(MotorVehicleSimulationCase rule, MotorVehiclePerson person, decimal dailyResult);
+        OpenFiscaResource Build(MotorVehicleSimulationCase rule, MotorVehiclePerson person, decimal dailyResult);
     }
 }
