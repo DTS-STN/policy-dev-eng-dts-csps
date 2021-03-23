@@ -22,7 +22,6 @@ namespace pde_poc_web.Models
                 StandardOtherWeekly = 40,
                 StandardHighwayWeekly = 60,
                 StandardHighwayReduction = 10,
-                MaxCmvoDistance = 10,
             };
 
             VariantCase = new MVCaseViewModel() {
@@ -32,7 +31,6 @@ namespace pde_poc_web.Models
                 StandardOtherWeekly = 40,
                 StandardHighwayWeekly = 60,
                 StandardHighwayReduction = 10,
-                MaxCmvoDistance = 10,
             };
 
             Person = new MotorVehiclePersonViewModel() {

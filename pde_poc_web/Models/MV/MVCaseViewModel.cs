@@ -28,10 +28,6 @@ namespace pde_poc_web.Models
 
         [Required(ErrorMessage = "Field is required.")]
         [Range(1,100, ErrorMessage = "Value must be between {1} and {2}.")]
-        public double StandardHighwayReduction { get; set; }
-
-        [Required(ErrorMessage = "Field is required.")]
-        [Range(0,2000, ErrorMessage = "Value must be between {1} and {2}.")]
-        public double MaxCmvoDistance { get; set; }    
+        public double StandardHighwayReduction { get; set; }  
     }
 }
