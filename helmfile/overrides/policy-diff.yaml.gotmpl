@@ -6,6 +6,8 @@ image:
 extraEnv:
   - name: connectionString
     value:  {{ requiredEnv "connectionString" }}
+  - name: OpenFiscaOptions__Url
+    value: {{ requiredEnv "OpenFiscaOptions__Url" }}
 
 ingress:
       enabled: true
