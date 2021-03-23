@@ -1,0 +1,109 @@
+﻿@using pde_poc_sim.Engine
+@model MotorVehicleResultsViewModel
+
+@{
+    var baseCase = Model.FullSimulation.Simulation.BaseCase;
+    var variantCase = Model.FullSimulation.Simulation.VariantCase;
+    var result = Model.FullSimulation.SimulationResult;
+    var person = Model.Person;
+    var Days = new List<string>() { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+}
+
+<h3>Simulation Results</h3>
+<div>
+    <h4>Schedule</h4>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Day</th>
+                    <th class="text-center">CMVO Hours</th>
+                    <th class="text-center">HMVO Hours</th>
+                    <th class="text-center">Other Hours</th>
+                    <th class="text-center">Is Holiday</th>
+                </tr>
+            </thead>
+            <tbody>
+                    @for (var i = 0; i < Days.Count; i++)
+            {
+                var v = person.WeeklySchedule.Hours;
+                <tr>
+                    <td>@Days[i]</td>
+                    <td>
+                        @person.WeeklySchedule.Hours[i].HoursCmvo
+                    </td>
+                    <td>
+                        @person.WeeklySchedule.Hours[i].HoursHmvo
+                    </td>
+                    <td>
+                        @person.WeeklySchedule.Hours[i].HoursOther
+                    </td>
+                    <td>
+                        @person.WeeklySchedule.Hours[i].IsHoliday
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        
+        </table>
+    </div>
+
+    <hr/>
+    <h4>Simulation Cases</h4>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Parameter</th>
+                    <th class="text-center">Base Case</th>
+                    <th class="text-center">Variant Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Standard CMVO Daily Hours</td>
+                    <td>@baseCase.StandardCmvoDaily</td>
+                    <td>@variantCase.StandardCmvoDaily</td>
+                </tr>
+                <tr>
+                    <td>Standard CMVO Weekly Hours</td>
+                    <td>@baseCase.StandardCmvoWeekly</td>
+                    <td>@variantCase.StandardCmvoWeekly</td>
+                </tr>
+                <tr>
+                    <td>Standard Other Weekly Hours</td>
+                    <td>@baseCase.StandardOtherWeekly</td>
+                    <td>@variantCase.StandardOtherWeekly</td>
+                </tr>
+                <tr>
+                    <td>Standard Highway Weekly Hours</td>
+                    <td>@baseCase.StandardHighwayWeekly</td>
+                    <td>@variantCase.StandardHighwayWeekly</td>
+                </tr>
+                <tr>
+                    <td>Highway Holiday Reduction Factor</td>
+                    <td>@baseCase.StandardHighwayReduction</td>
+                    <td>@variantCase.StandardHighwayReduction</td>
+                </tr>
+                <tr>
+                    <td>Max CMVO Distance (miles)</td>
+                    <td>@baseCase.MaxCmvoDistance</td>
+                    <td>@variantCase.MaxCmvoDistance</td>
+                </tr>
+                <tr class="bg-info font-weight-bold">
+                    <td>Hours OT</td>
+                    <td>@result.PersonResults[0].BaseAmount</td>
+                    <td>@result.PersonResults[0].VariantAmount</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    #results-table_wrapper {
+        width: 100% !important
+    }
+</style>

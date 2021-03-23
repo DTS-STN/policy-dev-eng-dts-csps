@@ -1,8 +1,10 @@
+using pde_poc_sim.Engine.Interfaces;
+
 namespace pde_poc_sim.Engine
 {
     public class PersonResult
     {
-        public Person Person { get; set; }
+        public IPerson Person { get; set; }
 
         public decimal BaseAmount { get; set; }
 

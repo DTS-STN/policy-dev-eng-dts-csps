@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pde-poc-web", "pde_poc_web\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pde_poc_sim", "pde_poc_sim\pde_poc_sim.csproj", "{9764603B-A146-46FD-A98D-CBA0075E84E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pde_poc_rule", "pde_poc_rule\pde_poc_rule.csproj", "{A813F3B7-56AA-4CE8-87C4-19E7ACE997D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pde_poc.Tests", "pde_poc.Tests\pde_poc.Tests.csproj", "{CFF713BF-BDBE-4793-B80F-1AE4F97BF84A}"
 EndProject
 Global

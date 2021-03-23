@@ -1,14 +1,14 @@
 using System;
-using System.Collections.Generic;
+using pde_poc_sim.Engine.Interfaces;
 
 namespace pde_poc_sim.Engine
 {
-    public class Simulation
+    public class Simulation<T> where T : ISimulationCase
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
-        public SimulationCase BaseCase { get; set; }
-        public SimulationCase VariantCase { get; set; }
+        public T BaseCase { get; set; }
+        public T VariantCase { get; set; }
     }
 }

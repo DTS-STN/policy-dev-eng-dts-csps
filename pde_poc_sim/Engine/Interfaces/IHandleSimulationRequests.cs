@@ -1,9 +1,11 @@
 using System;
 
+using pde_poc_sim.Engine.Interfaces;
+
 namespace pde_poc_sim.Engine.Lib
 {
-    public interface IHandleSimulationRequests
+    public interface IHandleSimulationRequests <T> where T : ISimulationCaseRequest
     {
-         Guid Handle(SimulationRequest request);
+         Guid Handle(SimulationRequest<T> request);
     }
 }
