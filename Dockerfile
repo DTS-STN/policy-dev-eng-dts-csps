@@ -4,7 +4,6 @@ WORKDIR /app
 # copy csproj and restore as distinct layers
 COPY *.sln .
 COPY pde_poc_web/*.csproj ./pde_poc_web/
-COPY pde_poc_rule/*.csproj ./pde_poc_rule/
 COPY pde_poc_sim/*.csproj ./pde_poc_sim/
 COPY pde_poc.Tests/*.csproj ./pde_poc.Tests/ 
 #
@@ -12,7 +11,6 @@ RUN dotnet restore
 #
 # copy everything else and build app
 COPY pde_poc_web/. ./pde_poc_web/
-COPY pde_poc_rule/. ./pde_poc_rule/
 COPY pde_poc_sim/. ./pde_poc_sim/ 
 #
 WORKDIR /app
