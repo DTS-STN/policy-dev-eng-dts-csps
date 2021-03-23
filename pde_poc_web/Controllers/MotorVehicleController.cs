@@ -86,7 +86,6 @@ namespace pde_poc_web.Controllers
                     StandardOtherWeekly = vm.BaseCase.StandardOtherWeekly,
                     StandardHighwayWeekly = vm.BaseCase.StandardHighwayWeekly,
                     StandardHighwayReduction = vm.BaseCase.StandardHighwayReduction,
-                    MaxCmvoDistance = vm.BaseCase.MaxCmvoDistance,
                     
                 },
                 VariantCaseRequest = new MotorVehicleSimulationCaseRequest() {
@@ -96,7 +95,6 @@ namespace pde_poc_web.Controllers
                     StandardOtherWeekly = vm.VariantCase.StandardOtherWeekly,
                     StandardHighwayWeekly = vm.VariantCase.StandardHighwayWeekly,
                     StandardHighwayReduction = vm.VariantCase.StandardHighwayReduction,
-                    MaxCmvoDistance = vm.VariantCase.MaxCmvoDistance,
                 },
             };
         }

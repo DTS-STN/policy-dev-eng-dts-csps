@@ -10,6 +10,5 @@ namespace pde_poc_sim.Engine
         public double StandardOtherDaily { get; set; }
         public double StandardHighwayWeekly { get; set; }
         public double StandardHighwayReduction { get; set; }
-        public double MaxCmvoDistance { get; set; }
     }
 }
