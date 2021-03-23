@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 // using pde_poc_web.Models.Storage;
 // using pde_poc_web.Models.Storage.Mocks;
@@ -171,7 +172,14 @@ namespace pde_poc_web
             // OpenFisca
             services.AddScoped<IOpenFisca, OpenFiscaLib>();
             services.AddScoped<IRestClient, MyRestClient>();
-            services.Configure<OpenFiscaOptions>(options => Configuration.GetSection("OpenFiscaOptions").Bind(options));
+
+            // OpenFisca options
+            var openFiscaUrl = Configuration["OpenFiscaOptions:Url"] ?? 
+                Environment.GetEnvironmentVariable("openFiscaUrl");
+            var openFiscaOptions = new OpenFiscaOptions() {
+                Url = openFiscaUrl
+            };
+            services.AddSingleton<IOptions<OpenFiscaOptions>>(x => Options.Create(openFiscaOptions));
 
             services.AddScoped<IBuildDailyRequests, DailyRequestBuilder>();
             services.AddScoped<IBuildAggregateRequests, AggregateRequestBuilder>();
