@@ -10,6 +10,7 @@
         <form asp-action="Form">
             <!-- Schedule -->
             <h4>Schedule</h4>
+            <p>Enter a weekly work schedule. All hours entered must be less than 24. Do not enter any holiday hours worked.</p>
             <div class="row">
                 <table class="table table-striped">
                     <thead>
@@ -24,21 +25,24 @@
                     <tbody>
                             @for (var i = 0; i < Days.Count; i++)
                     {
-                        var v = person.WeeklySchedule.Hours;
+                        var v = person.Hours;
                         <tr>
                             <td>@Days[i]</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="Person.WeeklySchedule.Hours[i].HoursCmvo"/>
+                                <input type="text" class="form-control" asp-for="Person.Hours[i].HoursCmvo"/>
+                                <span class="text-danger" asp-validation-for="Person.Hours[i].HoursCmvo"></span>
                                 @* <input type="text" name="Model[@i].CmvoHours" /> *@
                             </td>
                             <td>
-                                <input type="text" class="form-control" asp-for="Person.WeeklySchedule.Hours[i].HoursHmvo"/>
+                                <input type="text" class="form-control" asp-for="Person.Hours[i].HoursHmvo"/>
+                                <span class="text-danger" asp-validation-for="Person.Hours[i].HoursHmvo"></span>
                             </td>
                             <td>
-                                <input type="text" class="form-control" asp-for="Person.WeeklySchedule.Hours[i].HoursOther"/>
+                                <input type="text" class="form-control" asp-for="Person.Hours[i].HoursOther"/>
+                                <span class="text-danger" asp-validation-for="Person.Hours[i].HoursOther"></span>
                             </td>
                             <td>
-                                <input type="checkbox" asp-for="Person.WeeklySchedule.Hours[i].IsHoliday"/>
+                                <input type="checkbox" asp-for="Person.Hours[i].IsHoliday"/>
                             </td>
                         </tr>
                     }
@@ -51,59 +55,81 @@
             <!-- CASES -->
             <hr/>
             <h4>Simulation Cases</h4>
+            <p>Enter two scenarios to run the schedule against to compare the number of overtime hours</p>
             <div class="row">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="text-center">Parameter</th>
-                            <th class="text-center">Base Case</th>
-                            <th class="text-center">Variant Case</th>
+                            <th class="text-center" style="width:33%;">Rule Property</th>
+                            <th class="text-center" style="width:33%;">Current Value</th>
+                            <th class="text-center" style="width:33%;">Proposed Value</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Standard CMVO Daily Hours</td>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardCmvoDaily)</td>
                             <td>
                                 <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoDaily"/>
+                                <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoDaily"></span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" asp-for="VariantCase.StandardCmvoDaily"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardCmvoDaily"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Standard CMVO Weekly Hours</td>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardCmvoWeekly)</td>
                             <td>
                                 <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoWeekly"/>
+                                <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoWeekly"></span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" asp-for="VariantCase.StandardCmvoWeekly"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardCmvoWeekly"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Standard Other Weekly Hours</td>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardOtherDaily)</td>
+                            <td>
+                                <input type="text" class="form-control" asp-for="BaseCase.StandardOtherDaily"/>
+                                <span class="text-danger" asp-validation-for="BaseCase.StandardOtherDaily"></span>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" asp-for="VariantCase.StandardOtherDaily"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardOtherDaily"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardOtherWeekly)</td>
                             <td>
                                 <input type="text" class="form-control" asp-for="BaseCase.StandardOtherWeekly"/>
+                                <span class="text-danger" asp-validation-for="BaseCase.StandardOtherWeekly"></span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" asp-for="VariantCase.StandardOtherWeekly"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardOtherWeekly"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Standard Highway Weekly Hours</td>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardHighwayWeekly)</td>
                             <td>
                                 <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayWeekly"/>
+                                <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayWeekly"></span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" asp-for="VariantCase.StandardHighwayWeekly"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayWeekly"></span>
                             </td>
                         </tr>
                         <tr>
-                            <td>Highway Holiday Reduction Factor</td>
+                            <td>@Html.LabelFor(x => x.BaseCase.StandardHighwayReduction)</td>
                             <td>
                                 <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayReduction"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayReduction"></span>
                             </td>
                             <td>
                                 <input type="text" class="form-control" asp-for="VariantCase.StandardHighwayReduction"/>
+                                <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayReduction"></span>
                             </td>
                         </tr>
                         @* <tr class="bg-info font-weight-bold">
@@ -115,15 +141,6 @@
                     </tbody>
                 </table>
             </div>
-            <div>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoDaily"></span>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoWeekly"></span>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardOtherDaily"></span>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardOtherWeekly"></span>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayWeekly"></span>
-                <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayReduction"></span>
-            </div>
-
             <hr/>
             <button type="submit" class="btn btn-primary">Run</button>
         </form>

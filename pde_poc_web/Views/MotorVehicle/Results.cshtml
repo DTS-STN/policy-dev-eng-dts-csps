@@ -55,9 +55,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th class="text-center">Parameter</th>
-                    <th class="text-center">Base Case</th>
-                    <th class="text-center">Variant Case</th>
+                    <th class="text-center">Rule Property</th>
+                    <th class="text-center">Current Value</th>
+                    <th class="text-center">Proposed Value</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,6 +72,11 @@
                     <td>@variantCase.StandardCmvoWeekly</td>
                 </tr>
                 <tr>
+                    <td>Standard Other Daily Hours</td>
+                    <td>@baseCase.StandardOtherDaily</td>
+                    <td>@variantCase.StandardOtherDaily</td>
+                </tr>
+                <tr>
                     <td>Standard Other Weekly Hours</td>
                     <td>@baseCase.StandardOtherWeekly</td>
                     <td>@variantCase.StandardOtherWeekly</td>
@@ -82,12 +87,12 @@
                     <td>@variantCase.StandardHighwayWeekly</td>
                 </tr>
                 <tr>
-                    <td>Highway Holiday Reduction Factor</td>
+                    <td>Standard Highway Reduction Hours</td>
                     <td>@baseCase.StandardHighwayReduction</td>
                     <td>@variantCase.StandardHighwayReduction</td>
                 </tr>
                 <tr class="bg-info font-weight-bold">
-                    <td>Hours OT</td>
+                    <td>Total Hours OT</td>
                     <td>@result.PersonResults[0].BaseAmount</td>
                     <td>@result.PersonResults[0].VariantAmount</td>
                 </tr>
@@ -95,6 +100,8 @@
             </tbody>
         </table>
     </div>
+    <hr/>
+    <a type="button" asp-action="Modify" class="btn btn-primary">Modify Simulation</a>
 </div>
 
 <style>
