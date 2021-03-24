@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Memory;
 
 using pde_poc_web.Models;
 using pde_poc_sim.Engine.Lib;
 using pde_poc_sim.Engine;
-using pde_poc_sim.Engine.Interfaces;
 
 namespace pde_poc_web.Controllers
 {
@@ -40,9 +36,17 @@ namespace pde_poc_web.Controllers
             return View(vm);
         }
 
+        public IActionResult Modify() {
+            var vm = _cache.Get<MVSimulationViewModel>("MV_ViewModel");
+            return View("Form", vm);
+        }
+
         [HttpPost]
         public IActionResult Form(MVSimulationViewModel formViewModel) {
             if (ModelState.IsValid) {
+                // Store current form data in the cache
+                _cache.Set<MVSimulationViewModel>("MV_ViewModel", formViewModel);
+
                 // Store the person in the cache
                 var person = BuildPerson(formViewModel);
                 _cache.Set<MotorVehiclePerson>("MV_PERSON", person);
@@ -52,7 +56,7 @@ namespace pde_poc_web.Controllers
                 var id = _requestHandler.Handle(simulationRequest);
                 return RedirectToAction("Results", new { id });
             }
-            return View("Form");
+            return View("Form", formViewModel);
         }
 
         public IActionResult Results(Guid id) {
@@ -69,9 +73,17 @@ namespace pde_poc_web.Controllers
         }
 
         private MotorVehiclePerson BuildPerson(MVSimulationViewModel vm) {
+            var weeklySchedule = new MvoSchedule() {
+                Hours = new List<HourSet>()
+            };
+
+            foreach (var vmHour in vm.Person.Hours) {
+                weeklySchedule.Hours.Add(new HourSet(vmHour.HoursCmvo.Value, vmHour.HoursHmvo.Value, vmHour.HoursOther.Value, vmHour.IsHoliday));
+            }
+
             var result = new MotorVehiclePerson() {
                 Id = Guid.NewGuid(),
-                WeeklySchedule = vm.Person.WeeklySchedule
+                WeeklySchedule =  weeklySchedule
             };
 
             return result;
