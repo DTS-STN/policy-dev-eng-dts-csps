@@ -42,10 +42,10 @@
                                 <input type="text" class="form-control hour-input" asp-for="Person.Hours[i].HoursOther"/>
                                 <span class="text-danger" asp-validation-for="Person.Hours[i].HoursOther"></span>
                             </td>
-                            <td>
-                                <input class="text-center" type="checkbox" asp-for="Person.Hours[i].IsHoliday"/>
+                            <td class="text-center">
+                                <input type="checkbox" asp-for="Person.Hours[i].IsHoliday"/>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <span class="font-weight-bold day-total"></span>
                             </td>
                         </tr>
@@ -56,7 +56,7 @@
                         <td class="hmvo-total"></td>
                         <td class="other-total"></td>
                         <td></td>
-                        <td class="grand-total"></td>
+                        <td class="text-center grand-total"></td>
                     </tr>
 
                     </tbody>
