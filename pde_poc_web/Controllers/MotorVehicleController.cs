@@ -38,6 +38,9 @@ namespace pde_poc_web.Controllers
 
         public IActionResult Modify() {
             var vm = _cache.Get<MVSimulationViewModel>("MV_ViewModel");
+            if (vm == null) {
+                return RedirectToAction("Form");
+            }
             return View("Form", vm);
         }
 

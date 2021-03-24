@@ -13,49 +13,69 @@
 <div>
     <h4>Schedule</h4>
     <div class="row">
-        <table class="table table-striped">
+        <table class="table table-striped" id="table-schedule-results">
             <thead>
                 <tr>
-                    <th class="text-center">Day</th>
+                    <th>Day</th>
                     <th class="text-center">CMVO Hours</th>
                     <th class="text-center">HMVO Hours</th>
                     <th class="text-center">Other Hours</th>
                     <th class="text-center">Is Holiday</th>
+                    <th class="text-center">Totals</th>
                 </tr>
             </thead>
             <tbody>
                     @for (var i = 0; i < Days.Count; i++)
             {
-                var v = person.WeeklySchedule.Hours;
+                var hours = person.WeeklySchedule.Hours;
                 <tr>
                     <td>@Days[i]</td>
                     <td>
-                        @person.WeeklySchedule.Hours[i].HoursCmvo
+                        @hours[i].HoursCmvo
                     </td>
                     <td>
-                        @person.WeeklySchedule.Hours[i].HoursHmvo
+                        @hours[i].HoursHmvo
                     </td>
                     <td>
-                        @person.WeeklySchedule.Hours[i].HoursOther
+                        @hours[i].HoursOther
                     </td>
                     <td>
-                        @person.WeeklySchedule.Hours[i].IsHoliday
+                        @hours[i].IsHoliday
+                    </td>
+                    <td>
+                        <span class="font-weight-bold day-total">
+                            @(hours[i].HoursCmvo + hours[i].HoursHmvo + hours[i].HoursOther)
+                        </span>
                     </td>
                 </tr>
             }
-
+            <tr class="font-weight-bold">
+                <td>Totals</td>
+                <td class="cmvo-total">
+                    @person.WeeklyCmvoHours
+                </td>
+                <td class="hmvo-total">
+                    @person.WeeklyHmvoHours
+                </td>
+                <td class="other-total">
+                    @person.WeeklyOtherHours
+                </td>
+                <td></td>
+                <td class="grand-total">
+                    @(person.WeeklyOtherHours + person.WeeklyCmvoHours + person.WeeklyHmvoHours)
+                </td>
+            </tr>
             </tbody>
-        
         </table>
     </div>
 
     <hr/>
     <h4>Simulation Cases</h4>
     <div class="row">
-        <table class="table table-striped">
+        <table class="table table-striped" id="table-cases-results">
             <thead>
                 <tr>
-                    <th class="text-center">Rule Property</th>
+                    <th>Rule Property</th>
                     <th class="text-center">Current Value</th>
                     <th class="text-center">Proposed Value</th>
                 </tr>
