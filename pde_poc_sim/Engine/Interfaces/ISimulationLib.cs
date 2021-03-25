@@ -7,7 +7,6 @@ namespace pde_poc_sim.Engine.Lib
 {
     public interface ISimulationLib<T> where T : ISimulationCase
     {
-         T GetBaseCase();
          IEnumerable<SimulationLite> GetAll();
          void DeleteSimulation(Guid id);
     }

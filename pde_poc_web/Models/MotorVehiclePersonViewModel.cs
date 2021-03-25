@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-
 namespace pde_poc_web.Models
 {
     public class MotorVehiclePersonViewModel

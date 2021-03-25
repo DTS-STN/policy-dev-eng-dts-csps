@@ -21,7 +21,6 @@ namespace pde_poc.Tests
         {
             // Arrange
             var simulationStore = A.Fake<IStoreSimulations<ISimulationCase>>();
-            var helperStore = A.Fake<IHelperStore<ISimulationCase>>();
 
             var simulations = new List<SimulationLite>() {
                 new SimulationLite()
@@ -30,7 +29,7 @@ namespace pde_poc.Tests
             
 
             // Act
-            var sut = new SimulationLib<ISimulationCase>(helperStore, simulationStore);
+            var sut = new SimulationLib<ISimulationCase>(simulationStore);
 
             var result = sut.GetAll();
 
