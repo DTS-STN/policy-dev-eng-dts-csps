@@ -30,12 +30,12 @@ namespace pde_poc_web.Models
 
             Person = new MotorVehiclePersonViewModel() {
                 Hours = new List<HourSetViewModel>() {
-                    new HourSetViewModel(8,0,0,false),
-                    new HourSetViewModel(9,0,0,false),
-                    new HourSetViewModel(8,2,0,false),
-                    new HourSetViewModel(2,8,0,false),
-                    new HourSetViewModel(8,0,8,false),
-                    new HourSetViewModel(4,4,4,true),
+                    new HourSetViewModel(0,0,0,false),
+                    new HourSetViewModel(0,0,0,false),
+                    new HourSetViewModel(0,0,0,false),
+                    new HourSetViewModel(0,0,0,false),
+                    new HourSetViewModel(0,0,0,false),
+                    new HourSetViewModel(0,0,0,false),
                     new HourSetViewModel(0,0,0,false),
                 }
             };
