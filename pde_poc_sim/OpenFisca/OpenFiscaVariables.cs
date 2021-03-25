@@ -10,6 +10,7 @@ namespace pde_poc_sim.OpenFisca
         public const string DailyCmvoHours = "daily_work_schedule__total_hours_city_operator";
         public const string DailyBusHours = "daily_work_schedule__total_hours_bus_operator";
         public const string DailyOtherHours = "daily_work_schedule__total_hours_other";
+        public const string IsHoliday = "daily_work_schedule__is_holiday";
 
 
         // Aggregate

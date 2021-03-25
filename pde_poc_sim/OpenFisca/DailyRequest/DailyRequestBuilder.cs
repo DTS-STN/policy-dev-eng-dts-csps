@@ -24,7 +24,7 @@ namespace pde_poc_sim.OpenFisca
                 result.SetProp(personName, OF.StandardClcDailyHours, rule.StandardOtherDaily);
                 result.SetProp(personName, OF.StandardCmvoDailyHours, rule.StandardCmvoDaily);
 
-                // Any need to add holiday hours?
+                result.SetProp(personName, OF.IsHoliday, hourSet.IsHoliday);
             }
             return result;
         }
