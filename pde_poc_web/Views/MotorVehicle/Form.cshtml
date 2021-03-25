@@ -5,12 +5,14 @@
 }
 
 <div>
-    <h3>New Simulation</h3>
+    <h1>PDE: Motor Vehicle Operators</h1>
+    <p class="subtitle">Hours of Work Regulation</p>
+    <br/>
     <div>
         <form asp-action="Form">
             <!-- Schedule -->
-            <h4>Schedule</h4>
-            <p>Enter a weekly work schedule. All hours entered must be less than 24. Do not enter any holiday hours worked.</p>
+            <h2>Schedule of hours of work</h2>
+            <p>Enter a sample schedule of hours of work that you'd like to test. Please mark any holidays. This simulation assumes no hours were worked on a holiday.</p>
             <div class="row">
                 <table class="table table-striped" id="table-schedule">
                     <thead>
@@ -66,22 +68,22 @@
             
             <!-- CASES -->
             <hr/>
-            <h4>Simulation Cases</h4>
-            <p>Enter two scenarios to run the schedule against to compare the number of overtime hours</p>
+            <h2>Simulation Cases</h2>
+            <p>The first column are key parts of the existing regulation. The second column is the existing rules. The third column is where you can enter the possible changes you'd like to test.</p>
             <div class="row">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th style="width:33%;">Rule Property</th>
-                            <th class="text-center" style="width:33%;">Current Value</th>
-                            <th class="text-center" style="width:33%;">Proposed Value</th>
+                            <th class="text-center" style="width:33%;">Existing Regulation</th>
+                            <th class="text-center" style="width:33%;">Possible Change</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardCmvoDaily)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoDaily"/>
+                                <input type="text" disabled class="form-control" asp-for="BaseCase.StandardCmvoDaily"/>
                                 <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoDaily"></span>
                             </td>
                             <td>
@@ -92,7 +94,7 @@
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardCmvoWeekly)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardCmvoWeekly"/>
+                                <input type="text" disabled class="form-control" asp-for="BaseCase.StandardCmvoWeekly"/>
                                 <span class="text-danger" asp-validation-for="BaseCase.StandardCmvoWeekly"></span>
                             </td>
                             <td>
@@ -103,7 +105,7 @@
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardOtherDaily)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardOtherDaily"/>
+                                <input type="text" disabled class="form-control" asp-for="BaseCase.StandardOtherDaily"/>
                                 <span class="text-danger" asp-validation-for="BaseCase.StandardOtherDaily"></span>
                             </td>
                             <td>
@@ -114,7 +116,7 @@
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardOtherWeekly)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardOtherWeekly"/>
+                                <input type="text" disabled class="form-control" asp-for="BaseCase.StandardOtherWeekly"/>
                                 <span class="text-danger" asp-validation-for="BaseCase.StandardOtherWeekly"></span>
                             </td>
                             <td>
@@ -125,7 +127,7 @@
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardHighwayWeekly)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayWeekly"/>
+                                <input type="text" disabled  class="form-control" asp-for="BaseCase.StandardHighwayWeekly"/>
                                 <span class="text-danger" asp-validation-for="BaseCase.StandardHighwayWeekly"></span>
                             </td>
                             <td>
@@ -136,7 +138,7 @@
                         <tr>
                             <td>@Html.LabelFor(x => x.BaseCase.StandardHighwayReduction)</td>
                             <td>
-                                <input type="text" class="form-control" asp-for="BaseCase.StandardHighwayReduction"/>
+                                <input type="text" disabled class="form-control" asp-for="BaseCase.StandardHighwayReduction"/>
                                 <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayReduction"></span>
                             </td>
                             <td>
@@ -144,11 +146,6 @@
                                 <span class="text-danger" asp-validation-for="VariantCase.StandardHighwayReduction"></span>
                             </td>
                         </tr>
-                        @* <tr class="bg-info font-weight-bold">
-                            <td>Hours OT</td>
-                            <td>@result.PersonResults[0].BaseAmount</td>
-                            <td>@result.PersonResults[0].VariantAmount</td>
-                        </tr> *@
 
                     </tbody>
                 </table>

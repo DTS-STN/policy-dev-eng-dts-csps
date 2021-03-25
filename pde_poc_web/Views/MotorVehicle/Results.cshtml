@@ -9,9 +9,29 @@
     var Days = new List<string>() { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
 }
 
-<h3>Simulation Results</h3>
+<h1>Simulation Results</h1>
 <div>
-    <h4>Schedule</h4>
+    <h2>Schedule</h2>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Results</th>
+                    <th class="text-center">Existing Regulation</th>
+                    <th class="text-center">Possible Change</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-info font-weight-bold">
+                    <td>Total Hours OT</td>
+                    <td class="text-center">@result.PersonResults[0].BaseAmount</td>
+                    <td class="text-center">@result.PersonResults[0].VariantAmount</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr/>
+
     <div class="row">
         <table class="table table-striped" id="table-schedule-results">
             <thead>
@@ -70,14 +90,14 @@
     </div>
 
     <hr/>
-    <h4>Simulation Cases</h4>
+    <h2>Simulation Cases</h2>
     <div class="row">
         <table class="table table-striped" id="table-cases-results">
             <thead>
                 <tr>
                     <th>Rule Property</th>
-                    <th class="text-center">Current Value</th>
-                    <th class="text-center">Proposed Value</th>
+                    <th class="text-center">Existing Regulation</th>
+                    <th class="text-center">Possible Change</th>
                 </tr>
             </thead>
             <tbody>

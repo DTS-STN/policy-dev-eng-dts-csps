@@ -1,5 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+.subtitle {
+  font-size: 1.75rem;
+}
+
 #table-schedule-results td{
   text-align: center;
 }
