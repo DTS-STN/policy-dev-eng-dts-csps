@@ -20,19 +20,25 @@ namespace pde_poc_sim.Engine
 
         public double WeeklyHmvoHours {
             get {
-                return WeeklySchedule.Hours.Sum(x => x.HoursHmvo);
+                return WeeklySchedule.Hours
+                    .Where(x => !x.IsHoliday)
+                    .Sum(x => x.HoursHmvo);
             }
         }
 
         public double WeeklyCmvoHours {
             get {
-                return WeeklySchedule.Hours.Sum(x => x.HoursCmvo);
+                return WeeklySchedule.Hours
+                    .Where(x => !x.IsHoliday)
+                    .Sum(x => x.HoursCmvo);
             }
         }
 
         public double WeeklyOtherHours {
             get {
-                return WeeklySchedule.Hours.Sum(x => x.HoursOther);
+                return WeeklySchedule.Hours
+                    .Where(x => !x.IsHoliday)
+                    .Sum(x => x.HoursOther);
             }
         }
 

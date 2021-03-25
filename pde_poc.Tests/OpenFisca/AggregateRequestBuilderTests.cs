@@ -31,15 +31,14 @@ namespace pde_poc.Tests
             Assert.Null(result.GetProp(personName, OF.TotalOTHours));
             Assert.Equal(1, result.GetProp(personName, OF.NumHolidaysInPeriod));
             Assert.Equal(0, result.GetProp(personName, OF.WeeklyBusHours));
-            Assert.Equal(8d, result.GetProp(personName, OF.WeeklyCmvoHours));
-            Assert.Equal(14d, result.GetProp(personName, OF.WeeklyHmvoHours));
-            Assert.Equal(17d, result.GetProp(personName, OF.WeeklyOtherHours));
+            Assert.Equal(7d, result.GetProp(personName, OF.WeeklyCmvoHours));
+            Assert.Equal(13d, result.GetProp(personName, OF.WeeklyHmvoHours));
+            Assert.Equal(16d, result.GetProp(personName, OF.WeeklyOtherHours));
 
             Assert.Equal(8d, result.GetProp(personName, OF.StandardClcDailyHours));
             Assert.Equal(40d, result.GetProp(personName, OF.StandardClcWeeklyHours));
             Assert.Equal(9d, result.GetProp(personName, OF.StandardCmvoDailyHours));
             Assert.Equal(45d, result.GetProp(personName, OF.StandardCmvoWeeklyHours));
-            //Assert.Equal(9d, result.GetProp(personName, OF.StandardCmvoHolidayReduction));
             Assert.Equal(10d, result.GetProp(personName, OF.StandardHmvoHolidayReduction));
             Assert.Equal(60d, result.GetProp(personName, OF.StandardHmvoWeeklyHours));
 
