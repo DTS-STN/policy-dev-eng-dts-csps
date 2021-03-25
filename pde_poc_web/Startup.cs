@@ -42,31 +42,13 @@ namespace pde_poc_web
         {
             services.AddControllersWithViews();
 
-            // Storage
-            string connectionString = Configuration.GetConnectionString("DefaultDB") ?? Environment.GetEnvironmentVariable("connectionString");
-            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString, b => b.MigrationsAssembly("pde-poc-web")));
-            
-            InjectMaternityBenefits(services);
             InjectMotorVehicle(services);
-
-            // Common
             services.AddScoped<IJoinResults, Joiner>();
-            
-
-            // Create mocks
-            services.AddScoped<MockCreator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            // Run initial migration
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
-                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>()) {
-                    context.Database.Migrate();
-                }
-            }
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -146,9 +128,6 @@ namespace pde_poc_web
                     MotorVehicleSimulationCaseRequest
                 >,
                 MotorVehicleSimulationBuilder>(); 
-
-            services.AddScoped<IHelperStore<MotorVehicleSimulationCase>, 
-                MotorVehicleHelperStore>();
 
             services.AddScoped<IStorePersons<MotorVehiclePerson>, 
                 MotorVehiclePersonStore>();
