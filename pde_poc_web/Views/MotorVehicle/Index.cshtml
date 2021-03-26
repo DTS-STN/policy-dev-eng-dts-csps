@@ -1,7 +1,55 @@
-@using pde_poc_sim.Engine
-@model List<SimulationLite>
-
-
 <div>
-    Welcome to the Motor Vehicle Operator Hours of Work Simulator
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>PDE: Motor Vehicle Operators</h1>
+            <p class="subtitle">Hours of Work Regulation</p>
+        </div>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-7">
+        <h2>A Collaborative Exercise in Rules as Code</h2>
+        <p>The Canada School of Public Service, Employment and Social Development Canada, the Community of Federal Regulators, drafters from the Department of Justice, and the Labour Program applied the Rules as Code process to the existing motor vehicles operators hours of work regulation regarding overtime. </p>
+        <p>In a 3-weeks sprint the team completed concept models, decision trees, source code for the regulation in Openfisca and has published it publicly as an API on Github for all to connect to. That referenced API is used here under the hood to power this Policy Difference Engine to test possible changes to this regulation through microsimulations. </p>
+        
+        <h2>The Policy Difference Engine</h2>
+        <p>Using this application will provide policy analysts with observable test results of possible regulatory changes to augment their analysis.</p>
+        <p>
+            <a type="button" class="btn btn-primary btn-lg" asp-action="Form">Test the PDE Prototype</a>
+        </p>
+        
+    </div>
+    <div class="col-4 offset-1">
+        <h2>In Partnership</h2>
+        <div class="row">
+            <div class="col-12 logo-holder">
+                <img class="logo-img" src="images/doj.jpg" title="Department of Justice" alt="Department of Justice"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 logo-holder">
+                <img class="logo-img" src="images/csps.jpg" title="Canada School of Public Service" alt="Canada School of Public Service" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 logo-holder">
+                <img class="logo-img" src="images/esdc.jpg" title="Employment and Social Development Canada" alt="Employment and Social Development Canada"/>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 logo-holder">
+                <img class="logo-img" src="images/cfr.jpg" title="Community of Federal Regulators" alt="Community of Federal Regulators"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 logo-holder">
+                <img class="logo-img" src="images/c4c.jpg" title="Code for Canada" alt="Code for Canada"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+     
 </div>

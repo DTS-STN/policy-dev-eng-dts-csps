@@ -70,7 +70,7 @@ namespace pde_poc_web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=MotorVehicle}/{action=Form}/{id?}");
+                    pattern: "{controller=MotorVehicle}/{action=Index}/{id?}");
             });
         }
    

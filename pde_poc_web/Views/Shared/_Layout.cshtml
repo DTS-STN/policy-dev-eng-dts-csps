@@ -3,53 +3,56 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Policy Difference Engine</title>
+
+    <title>PDE: Motor Vehicle Operator - Hours of Work Regulation</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+ 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="MotorVehicle" asp-action="Index">Policy Difference Engine</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#"><img src="https://www.canada.ca/content/dam/canada/tbs-sct/migration/hgw-cgf/oversight-surveillance/communications/fip-pcim/images/spec/T130-Canada.png" alt="Government of Canada Logo"/></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MotorVehicle" asp-action="Index">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="MotorVehicle" asp-action="Form">New Simulation</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            <div class="container">
-                <div class="row">
-                    <!-- Start Container -->
-                    <div class="col-12">
-                            @RenderBody()
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" asp-action="Form">Test Prototype</a>
+                        <a class="nav-item nav-link" href="https://github.com/DTS-STN/policy-dev-eng-dts-csps" target="_blank">Documentation</a>
                     </div>
                 </div>
             </div>
-        </main>
+        </nav>
+      
+        <div class="secondary-header">
+            <div class="container">
+                Policy Difference Engine: Motor Vehicle Operator - Hours of Work Regulations
+            </div>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="text-muted">
         <div class="container">
-            &copy; 2021 - pde_poc_web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>2021 &copy; Employment and Social Development Canada</p>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -57,13 +60,3 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-
-
-<script>
-$(document).ready( function () {
-    $('#results-table').DataTable({
-        searching: false,
-        pageLength: 100
-    });
-} );
-</script>
